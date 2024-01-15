@@ -131,7 +131,7 @@ defmodule Mix.Tasks.Compile.Gleam do
     if 0 < files do
       lib = Path.join(Mix.Project.build_path(), "lib")
       build = Path.join(lib, "#{app}")
-      out = "build/dev/erlang/#{app}"
+      out = "build/dev/elixir/#{app}"
 
       File.mkdir_p!(build)
 
@@ -169,11 +169,15 @@ defmodule Mix.Tasks.Compile.Gleam do
       File.rm_rf!(out)
 
       cmd =
-        "gleam compile-package --target erlang --no-beam --package #{package} --out #{out} --lib #{lib}"
+        "gleam compile-package --target elixir --package #{package} --out #{out} --lib #{lib}"
 
       @shell.info(
         ~s(Compiling #{files} #{if tests?, do: "test "}file#{if 1 != files, do: "s"} (.gleam\))
       )
+      @shell.info(
+        ~s(#{cmd})
+      )
+
 
       MixGleam.IO.debug_info("Compiler Command", cmd)
       compiled? = @shell.cmd(cmd) === 0
