@@ -3,11 +3,11 @@ defmodule MixGleam.MixProject do
 
   def project do
     [
-      app: :mix_gleam,
+      app: :mix_gleam_ex,
       version: "0.6.3",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
-      name: "mix_gleam",
+      name: "mix_gleam_ex",
       description: "Compile Gleam code with mix",
       deps: deps(),
       package: [
